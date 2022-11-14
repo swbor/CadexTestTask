@@ -16,11 +16,13 @@ struct CADEXCURVESLIBRARY_EXPORT Point3D{
     Point3D()=default;
     Point3D(double X,double Y, double Z):x(X),y(Y),z(Z){};
     void Print(){cout<<"("<<x<<" ,"<<y<<" ,"<<z<<" ) ";}
+    virtual ~Point3D()=default;
 };
 
 struct CADEXCURVESLIBRARY_EXPORT Vector3D:public Point3D{
     Vector3D() = default;
     Vector3D(double X,double Y, double Z):Point3D(X,Y,Z){};
+    ~Vector3D()=default;
 };
 
 class CADEXCURVESLIBRARY_EXPORT Curves
@@ -37,6 +39,7 @@ public:
     virtual Point3D calcPoint(double t) = 0;
     virtual Vector3D calcVector(double t) = 0;
     virtual CurveTypes getType() = 0;
+    virtual ~Curves()=default;
 };
 
 class CADEXCURVESLIBRARY_EXPORT Circle:public Curves
@@ -50,6 +53,7 @@ public:
     Point3D calcPoint(double t);
     Vector3D calcVector(double t);
     CurveTypes getType(){return CurveTypes::CircleType;}
+    ~Circle()=default;
 };
 
 class CADEXCURVESLIBRARY_EXPORT Elipse:public Curves
@@ -66,6 +70,7 @@ public:
     Point3D calcPoint(double t);
     Vector3D calcVector(double t);
     CurveTypes getType(){return CurveTypes::ElipseType;}
+    ~Elipse()=default;
 };
 
 class CADEXCURVESLIBRARY_EXPORT Helix:public Curves
@@ -82,6 +87,7 @@ public:
     Point3D calcPoint(double t);
     Vector3D calcVector(double t);
     CurveTypes getType(){return CurveTypes::HelixType;}
+    ~Helix()=default;
 };
 
 #endif // CADEXCURVESLIBRARY_H

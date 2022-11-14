@@ -91,5 +91,7 @@ int main()
         radii_sum += c->getRadi();
     }
     cout<<"Sum of radii = "<<radii_sum<<endl;
+    for (auto c:curves)
+        delete c;
     return 0;
 }
